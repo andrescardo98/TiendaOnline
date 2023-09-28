@@ -1,14 +1,19 @@
 package co.edu.uco.tiendaonline.data.entity.support;
 
 public final class CorreoElectronicoClienteEntity {
-	public String correoElectronico;
-	public boolean correoElectronicoConfirmado;
+	private String correoElectronico;
+	private boolean correoElectronicoConfirmado;
 	
 	
 	private CorreoElectronicoClienteEntity(final String correoElectronico, final boolean correoElectronicoConfirmado) {
 		super();
 		setCorreoElectronico(correoElectronico);
 		setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
+	}
+	
+	public static final CorreoElectronicoClienteEntity crear(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+		
+		return new CorreoElectronicoClienteEntity(correoElectronico, correoElectronicoConfirmado);
 	}
 
 
@@ -22,16 +27,13 @@ public final class CorreoElectronicoClienteEntity {
 	}
 
 
-	private final void setCorreoElectronico(String correoElectronico) {
+	private final void setCorreoElectronico(final String correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
 
 
-	private final void setCorreoElectronicoConfirmado(boolean correoElectronicoConfirmado) {
+	private final void setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
 		this.correoElectronicoConfirmado = correoElectronicoConfirmado;
 	}
-	
-	
-
 	
 }
