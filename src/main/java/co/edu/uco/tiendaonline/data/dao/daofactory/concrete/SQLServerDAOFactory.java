@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
+import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
+import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilSQL;
 import co.edu.uco.tiendaonline.data.dao.ClienteDAO;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.concrete.sqlserver.ClienteSQLServerDAO;
@@ -13,7 +17,6 @@ import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
 public final class SQLServerDAOFactory extends DAOFactory{
 
 	private Connection conexion;
-	private boolean enTransaccion = false;
 	
 	public SQLServerDAOFactory() {
 		abrirConexion();
@@ -28,59 +31,36 @@ public final class SQLServerDAOFactory extends DAOFactory{
 		
 		try {
 			conexion = DriverManager.getConnection(url, usuario, contrasenia);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (final SQLException excepcion) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+			throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
+		} catch (final Exception excepcion){
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000029);
+			throw DataTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
 		}
 	}
 
 	
 	@Override
 	public final void cerrarConexion() {
-		try {
-			if (conexion != null && !conexion.isClosed()) {
-				conexion.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		UtilSQL.cerrarConexion(conexion);
 	}
 
 	@Override
 	public void iniciarTransaccion() {
-		try {
-			if (!enTransaccion) {
-				conexion.setAutoCommit(false);
-				enTransaccion = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		UtilSQL.iniciarTransaccion(conexion);
 	}
 
 	@Override
 	public void confirmarTransaccion() {
-		try {
-			if (enTransaccion) {
-				conexion.commit();
-				conexion.setAutoCommit(true);
-				enTransaccion = false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+		UtilSQL.confirmarTransaccion(conexion);		
 	}
 
 	@Override
 	public void cancelarTransaccion() {
-		try {
-			if (enTransaccion) {
-				conexion.rollback();
-				conexion.setAutoCommit(true);
-				enTransaccion = false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+		UtilSQL.cancelarTransaccion(conexion);		
 	}
 
 	@Override
