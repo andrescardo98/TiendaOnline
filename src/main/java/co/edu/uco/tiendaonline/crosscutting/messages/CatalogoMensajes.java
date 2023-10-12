@@ -130,6 +130,37 @@ public class CatalogoMensajes {
 				"Se ha presentado un problema inesperado tratando de abrir la conexión. Se presentó una excepeción genérica "
 				+ "de tipo Exception. Por favor verifique la traza completa del error presentado, para así poder diagnosticar "
 				+ "con mayor certeza, qué sucedió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000030, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de registar la información del nuevo tipo de identificación."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000031, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo SQLException en el método crear de la clase TipoIdentificacion SQLServer "
+				+ "tratando de llevar a cabo el registro del nuevo Tipo de Identificación. Por favor revise la traza completa "
+				+ "del problema presentado para así poder identificar qué sucedió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000032, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema inesperado de tipo Exception en el método crear de la clase TipoIdentificacion SQLServer "
+				+ "tratando de llevar a cabo el registro del nuevo Tipo de Identificación. Por favor revise la traza completa "
+				+ "del problema presentado para así poder identificar qué sucedió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000033, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de consultar la información del tipo de identificación por el identificador deseado."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000034, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo SQLException en el método consultar por id de la clase TipoIdentificacion SQLServer "
+				+ "tratando de llevar a cabo la consulta del Tipo de Identificación. Por favor revise la traza completa "
+				+ "del problema presentado para así poder identificar qué sucedió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000035, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo SQLException en el método consultar por id de la clase TipoIdentificacion SQLServer "
+				+ "tratando de preparar la sentencia SQL de la consulta del tipo de identificación deseado. Por favor revise la traza completa "
+				+ "del problema presentado para así poder identificar qué sucedió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000036, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema inesperado de tipo Exception en el método consultar por id de la clase TipoIdentificacion SQLServer "
+				+ "tratando de preparar la sentencia SQL de la consulta del tipo de identificación deseado. Por favor revise la traza completa "
+				+ "del problema presentado para así poder identificar qué sucedió..."));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
