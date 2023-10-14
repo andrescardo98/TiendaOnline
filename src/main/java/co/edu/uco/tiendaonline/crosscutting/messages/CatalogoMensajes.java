@@ -191,6 +191,42 @@ public class CatalogoMensajes {
 				"Se ha presentado un problema inesperado de tipo Exception en el método eliminar de la clase TipoIdentificacionSQLServer "
 				+ "tratando de llevar a cabo la eliminación del Tipo de Identificación deseado. Por favor revise la traza completa "
 				+ "del problema presentado para así poder identificar qué sucedió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000044, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema inesperado de tipo Exception en el método ejecutarConsultaPorId."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000045, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de llevar a cabo la consulta de los Tipos de Identificación..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000046, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo SQLExcepcion en el método colocarParametrosConsulta de la clase "
+				+ "TipoIdentificacionSQLServerDAO tratando de colocar los parámetros de la consulta SQL.  Por favor revise la "
+				+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000047, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema inesperado de tipo SQLExcepcion en el método colocarParametrosConsulta de la clase "
+				+ "TipoIdentificacionSQLServerDAO tratando de colocar los parámetros de la consulta SQL.  Por favor revise la "
+				+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000048, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo SQLExcepcion en el método consultar de la clase "
+				+ "TipoIdentificacionSQLServerDAO tratando de preparar la sentencia SQL.  Por favor revise la "
+				+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000049, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema inesperado de tipo SQLExcepcion en el método consultar de la clase "
+						+ "TipoIdentificacionSQLServerDAO tratando de preparar la sentencia SQL.  Por favor revise la "
+						+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000050, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo SQLExcepcion en el método ejecutarConsulta de la clase "
+				+ "TipoIdentificacionSQLServerDAO tratando de ejecutar la consulta SQL.  Por favor revise la "
+				+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000051, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema inesperado de tipo SQLExcepcion en el método ejecutarConsulta de la clase "
+				+ "TipoIdentificacionSQLServerDAO tratando de ejecutar la consulta SQL.  Por favor revise la "
+				+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

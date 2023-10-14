@@ -10,13 +10,14 @@ import co.edu.uco.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteEnt
 public class ClienteEntity {
 	private UUID id;
 	private TipoIdentificacionEntity tipoIdentificacion;
+	private String identificacion;
 	private NombreCompletoClienteEntity nombreCompleto;
 	private CorreoElectronicoClienteEntity correoElectronico;
 	private NumeroTelefonoMovilClienteEntity numeroTelefonoMovil;
 	private Date fechaNacimiento;
 	
 	
-	private ClienteEntity(final UUID id, final TipoIdentificacionEntity tipoIdentificacion,
+	private ClienteEntity(final UUID id, final TipoIdentificacionEntity tipoIdentificacion, final String identificacion, 
 			final NombreCompletoClienteEntity nombreCompleto, final CorreoElectronicoClienteEntity correoElectronico,
 			final NumeroTelefonoMovilClienteEntity numeroTelefonoMovil, final Date fechaNacimiento) {
 		super();
@@ -29,11 +30,11 @@ public class ClienteEntity {
 	}
 
 
-	public static final ClienteEntity crear (final UUID id, final TipoIdentificacionEntity tipoIdentificacion,
+	public static final ClienteEntity crear (final UUID id, final TipoIdentificacionEntity tipoIdentificacion, final String identificacion,
 			final NombreCompletoClienteEntity nombreCompleto, final CorreoElectronicoClienteEntity correoElectronico,
 			final NumeroTelefonoMovilClienteEntity numeroTelefonoMovil, final Date fechaNacimiento) {
 		
-		return new ClienteEntity(id, tipoIdentificacion, nombreCompleto, correoElectronico, numeroTelefonoMovil, 
+		return new ClienteEntity(id, tipoIdentificacion, identificacion, nombreCompleto, correoElectronico, numeroTelefonoMovil, 
 				fechaNacimiento);
 	}
 
@@ -49,6 +50,9 @@ public class ClienteEntity {
 		return tipoIdentificacion;
 	}
 
+	public String getIdentificacion() {
+		return identificacion;
+	}
 
 	public final NombreCompletoClienteEntity getNombreCompleto() {
 		return nombreCompleto;
@@ -77,6 +81,10 @@ public class ClienteEntity {
 
 	private final void setTipoIdentificacion(final TipoIdentificacionEntity tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
+	}
+	
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
 	}
 
 

@@ -35,5 +35,12 @@ public final class UtilTexto {
 	public static final boolean validarIgualdadConTrimIgnoreCase(final String valor, final String valor2) {
 		return aplicarTrim(valor).equalsIgnoreCase(aplicarTrim(valor2));
 	}
-
+	
+	public static final boolean estaNulo(final String valor) {
+		return UtilObjeto.esNulo(valor);
+	}
+	
+	public static final boolean estaVacio(final String valor) {
+		return !estaNulo(valor) && validarIgualdadConTrim(valor, VACIO);
+	}
 }
