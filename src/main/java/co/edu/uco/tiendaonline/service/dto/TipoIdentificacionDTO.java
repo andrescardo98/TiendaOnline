@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 
 public final class TipoIdentificacionDTO {
 
@@ -13,7 +14,7 @@ public final class TipoIdentificacionDTO {
 	private boolean estado;
 
 	public TipoIdentificacionDTO() {
-		setId(id);//TODO ¿Cómo lograr que por defecto se asgine un UUID que sea todo con 0?
+		setId(UtilUUID.generarUUIDVacio());
 		setCodigo(UtilTexto.VACIO);
 		setNombre(UtilTexto.VACIO);
 		setEstado(false);
@@ -61,8 +62,5 @@ public final class TipoIdentificacionDTO {
 		this.estado = estado;
 		return this;
 	}
-	
-	
-	
 	
 }

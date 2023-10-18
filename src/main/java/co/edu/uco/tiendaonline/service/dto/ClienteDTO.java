@@ -3,7 +3,9 @@ package co.edu.uco.tiendaonline.service.dto;
 import java.util.Date;
 import java.util.UUID;
 
+import co.edu.uco.tiendaonline.crosscutting.util.UtilFecha;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.uco.tiendaonline.service.dto.support.CorreoElectronicoClienteDTO;
 import co.edu.uco.tiendaonline.service.dto.support.NombreCompletoClienteDTO;
 import co.edu.uco.tiendaonline.service.dto.support.NumeroTelefonoMovilClienteDTO;
@@ -21,14 +23,13 @@ public final class ClienteDTO {
 	
 	
 	public ClienteDTO() {
-		setId(id);//TODO ¿Cómo lograr que por defecto se asgine un UUID que sea todo con 0?
+		setId(UtilUUID.generarUUIDVacio());
 		setTipoIdentificacion(new TipoIdentificacionDTO());
 		setIdentificacion(UtilTexto.VACIO);
 		setNombreCompleto(new NombreCompletoClienteDTO());
 		setCorreoElectronico(new CorreoElectronicoClienteDTO());
 		setNumeroTelefonoMovil(new NumeroTelefonoMovilClienteDTO());
-		setFechaNacimiento(fechaNacimiento);//TODO: ¿Cómo lograr que por defecto se asigne una fecha por defecto que sepa que 
-												//no es válida y que pueda ser facilmente identificable?
+		setFechaNacimiento(UtilFecha.FECHA_NACIMIENTO_DEFECTO);
 	}
 	
 
@@ -96,7 +97,4 @@ public final class ClienteDTO {
 		this.fechaNacimiento = fechaNacimiento;
 		return this;
 	}
-	
-	
-
 }
