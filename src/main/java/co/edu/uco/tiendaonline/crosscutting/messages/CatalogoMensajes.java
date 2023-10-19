@@ -227,6 +227,24 @@ public class CatalogoMensajes {
 				"Se ha presentado un problema inesperado de tipo SQLExcepcion en el método ejecutarConsulta de la clase "
 				+ "TipoIdentificacionSQLServerDAO tratando de ejecutar la consulta SQL.  Por favor revise la "
 				+ "traza completa del problema presentado para así poder identificar qué sucedió... ..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000052, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema en el método toDomain de la clase TipoIdentificacionEntityMapper. "
+				+ "No es posible mappear un tipo de identificación dominio a partir de una entidad de tipo "
+				+ "identificación entity nula."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000053, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema en el método toEntity de la clase "
+				+ "TipoIdentificacionEntityMapper. No es posible mappear un tipo de identificación entity a partir de "
+				+ "una entidad de tipo identificación domain nula. "));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000054, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de llevar a cabo el registro de la información del "
+				+ "nuevo tipo de identificación"));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000055, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema en el método setFactoría de la clase "
+				+ "RegistrarTipoIdentificacionUseCase, debido a que la factoría con la cual se desea crear está nula"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

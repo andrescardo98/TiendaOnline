@@ -21,9 +21,7 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 		
 		if (UtilObjeto.esNulo(entity)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = "Se ha presentado un problema en el método toDomain de la clase TipoIdentificacionEntityMapper. "
-					+ "No es posible mappear un tipo de identificación dominio a partir de una entidad de tipo "
-					+ "identificación entity nula.";
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000052);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
@@ -35,9 +33,7 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 		
 		if (UtilObjeto.esNulo(domain)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = "Se ha presentado un problema en el método toEntity de la clase "
-					+ "TipoIdentificacionEntityMapper. No es posible mappear un tipo de identificación entity a partir de "
-					+ "una entidad de tipo identificación domain nula. ";
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000053);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		

@@ -5,6 +5,8 @@ import java.util.UUID;
 
 
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
+import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
+import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
@@ -95,10 +97,8 @@ public final class RegistrarTipoIdentificacionUseCase implements UseCase<TipoIde
 
 	private final void setFactoria(final DAOFactory factoria) {
 		if (UtilObjeto.esNulo(factoria)) {
-			var mensajeUsuario = "Se ha presentado un problema tratando de llevar a cabo el registro de la información del "
-					+ "nuevo tipo de identificación";
-			var mensajeTecnico = "Se ha presentado un problema en el método setFactoría de la clase "
-					+ "RegistrarTipoIdentificacionUseCase, debido a que la factoría con la cual se desea crear está nula";
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000054);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000055);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		this.factoria = factoria;
