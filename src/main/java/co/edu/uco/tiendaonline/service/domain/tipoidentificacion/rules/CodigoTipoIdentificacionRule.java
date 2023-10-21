@@ -42,7 +42,7 @@ public final class CodigoTipoIdentificacionRule implements Rule<String>{
 	
 	private final void validarFormato(final String dato) {
 		if (!UtilTexto.contieneSoloLetras(dato)) {
-			var mensajeUsuario = "El código del tipo de identificación solo puede contener letras.";
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000064);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}

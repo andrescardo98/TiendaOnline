@@ -256,8 +256,45 @@ public class CatalogoMensajes {
 				"La longitud del código del tipo de identificación no es válida. La longitud máxima son 50 caracteres."));
 		
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000059, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El código del tipo de identificación es un dato obligatorio."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000060, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El id del tipo de identificación es un dato obligatorio."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000061, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El id del tipo de identificación no puede ser igual al id por defecto."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000062, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"La longitud del nombre del tipo de identificación no es válida. La longitud máxima son 100 caracteres."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000063, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
 				"El nombre del tipo de identificación es un dato obligatorio."));
 		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000064, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El código del tipo de identificación solo puede contener letras."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000065, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El nombre del tipo de identificación solo puede contener letras."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000066, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No es posible llevar a cabo la operación deseada con el tipo de identificación, debido a que no existen datos para llevarla a cabo"));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000067, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de registar el nuevo tipo de identificación."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000068, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en el método execute de la clase "
+				+ "ResgistrarTipoIdentificacionFacade tratando de registrar el nuevo tipo de identificación. "
+				+ "Por favor revise la traza para validar qué ocurrió..."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000069, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible "
+				+ "mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000070, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es "
+				+ "posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación "
+				+ "domain nula"));
 		
 	}
 	

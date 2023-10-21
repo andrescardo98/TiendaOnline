@@ -5,6 +5,7 @@ import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.CodigoTipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.IdTipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.NombreTipoIdentificacionRule;
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.TipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
 public final class ModificarTipoIdentificacionValidator implements Validator<TipoIdentificacionDomain>{
@@ -21,14 +22,10 @@ public final class ModificarTipoIdentificacionValidator implements Validator<Tip
 	
 	@Override
 	public final void execute(final TipoIdentificacionDomain data) {
-		IdTipoIdentificacionRule.ejecutarValidacion(data);
+		TipoIdentificacionRule.ejecutarValidacion(data);
+		IdTipoIdentificacionRule.ejecutarValidacion(data.getId());
 		CodigoTipoIdentificacionRule.ejecutarValidacion(data.getCodigo());
 		NombreTipoIdentificacionRule.ejecutarValidacion(data.getNombre());
 		
-	}
-	
-	private final void registrarNuevoTipoIdentificacion(final TipoIdentificacionDomain domain) {
-		var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
-		getTipoIdentificacionDAO().crear(entity);
 	}
 }

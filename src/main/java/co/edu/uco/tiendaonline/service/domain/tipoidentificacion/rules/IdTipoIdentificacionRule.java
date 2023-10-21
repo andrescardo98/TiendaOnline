@@ -5,7 +5,8 @@ import java.util.UUID;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
-import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.uco.tiendaonline.service.domain.Rule;
 
 public final class IdTipoIdentificacionRule implements Rule<UUID>{
@@ -22,28 +23,20 @@ public final class IdTipoIdentificacionRule implements Rule<UUID>{
 
 	@Override
 	public final void validar(final UUID dato) {
-		validarLongitud(dato);
 		validarObligatoriedad(dato);
-		validarFormato(dato);
-	}
-	
-	private final void validarLongitud(final String dato) {
-		if (UtilTexto.longitudMaximaValida(dato, 50)) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000056);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
-		}
+		validarIdPorDefecto(dato);
 	}
 
-	private final void validarObligatoriedad(final String dato) {
-		if (UtilTexto.estaVacio(dato)) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000057);
+	private final void validarObligatoriedad(final UUID dato) {
+		if (UtilObjeto.esNulo(dato)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000060);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 	
-	private final void validarFormato(final String dato) {
-		if (!UtilTexto.contieneSoloLetras(dato)) {
-			var mensajeUsuario = "El código del tipo de identificación solo puede contener letras.";
+	private final void validarIdPorDefecto(final UUID dato) {
+		if (UtilUUID.esUuidPorDefecto(dato)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000061);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}

@@ -59,10 +59,10 @@ public final class UtilTexto {
 	}
 	
 	public static final boolean contieneSoloLetras(final String valor) {
-		return aplicarTrim(valor).matches(PATTERN_SOLO_LETRAS);
+		return obtenerValorPorDefecto(valor).matches(PATTERN_SOLO_LETRAS);
 	}
 	
 	public static final boolean contieneLetrasDigitosEspacios(final String valor) {
-		return aplicarTrim(valor).matches(PATTERN_SOLO_LETRAS_DIGITOS_ESPACIOS);
+		return obtenerValorPorDefecto(valor).matches(PATTERN_SOLO_LETRAS_DIGITOS_ESPACIOS);
 	}
 }

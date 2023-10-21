@@ -5,6 +5,7 @@ import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.CodigoTipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.IdTipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.NombreTipoIdentificacionRule;
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.TipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
 public final class RegistrarTipoIdentificacionValidator implements Validator<TipoIdentificacionDomain>{
@@ -15,24 +16,17 @@ public final class RegistrarTipoIdentificacionValidator implements Validator<Tip
 		super();
 	}
 	
-	public static final void ejecutarValidacion(final TipoIdentificacionDomain dato) {
-		instancia.execute(dato);
+	public static final void ejecutar(final TipoIdentificacionDomain data) {
+		instancia.execute(data);
 	}
 	
 	@Override
 	public final void execute(final TipoIdentificacionDomain data) {
-		// 1. Validar integirdad de datos
-		
-		
+		TipoIdentificacionRule.ejecutarValidacion(data);
 		CodigoTipoIdentificacionRule.ejecutarValidacion(data.getCodigo());
 		NombreTipoIdentificacionRule.ejecutarValidacion(data.getNombre());
 		
+		
 	}
-	
-	private final void registrarNuevoTipoIdentificacion(final TipoIdentificacionDomain domain) {
-		var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
-		getTipoIdentificacionDAO().crear(entity);
-	}
-	
 	
 }

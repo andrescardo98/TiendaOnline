@@ -1,5 +1,8 @@
 package co.edu.uco.tiendaonline.service.mapper.dto.concrete;
 
+import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
+import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
+import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.dto.TipoIdentificacionDTO;
@@ -16,16 +19,21 @@ private static final DTOMapper<TipoIdentificacionDTO, TipoIdentificacionDomain> 
 	@Override
 	public TipoIdentificacionDomain toDomain(TipoIdentificacionDTO dto) {
 		if (UtilObjeto.esNulo(dto)) {
-			var mensajeUsuario = "";
-			var mensajeTecnico = "";
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000069);
+			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
-		return null;
+		return TipoIdentificacionDomain.crear(dto.getId(), dto.getCodigo(), dto.getNombre(), dto.isEstado());
 	}
 
 	@Override
 	public TipoIdentificacionDTO toDto(TipoIdentificacionDomain domain) {
-		// TODO Auto-generated method stub
-		return null;
+		if (UtilObjeto.esNulo(domain)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000070);
+			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+		}
+		return TipoIdentificacionDTO.crear(domain.getId(), domain.getCodigo(), domain.getNombre(), domain.isEstado());
 	}
 
 	public static final TipoIdentificacionDomain convertToDomain(final TipoIdentificacionDTO dto) {

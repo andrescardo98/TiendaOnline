@@ -2,6 +2,8 @@ package co.edu.uco.tiendaonline.service.facade.concrete.tipoidentificacion;
 
 import co.edu.uco.tiendaonline.crosscutting.exception.TiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
+import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
+import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.uco.tiendaonline.data.dao.daofactory.TipoDAOFactory;
 import co.edu.uco.tiendaonline.service.businesslogic.concrete.tipoidentificacion.RegistrarTipoIdentificacionUseCase;
@@ -17,7 +19,7 @@ public final class ResgistrarTipoIdentificacionFacade implements Facade<TipoIden
 	public void execute(final TipoIdentificacionDTO dto) {
 		
 		final TipoIdentificacionDomain domain = TipoIdentificacionDTOMapper.convertToDomain(dto);		
-		RegistrarTipoIdentificacionValidator.ejecutarValidacion(domain);
+		RegistrarTipoIdentificacionValidator.ejecutar(domain);
 		
 		final DAOFactory daoFactory = DAOFactory.obtenerDAOFactory(TipoDAOFactory.SQLSERVER);
 		
@@ -33,10 +35,8 @@ public final class ResgistrarTipoIdentificacionFacade implements Facade<TipoIden
 			throw excepcion;
 		} catch (final Exception excepcion) {
 			daoFactory.cancelarTransaccion();
-			var mensajeUsuario = "Se ha presentado un problema tratando de registar el nuevo tipo de identificación.";
-			var mensajeTecnico = "Se ha presentado un problema inesperado en el método execute de la clase "
-					+ "ResgistrarTipoIdentificacionFacade tratando de registrar el nuevo tipo de identificación. "
-					+ "Por favor revise la traza para validar qué ocurrió...";
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000067);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000068);
 			throw ServiceTiendaOnlineException.crear(excepcion, mensajeUsuario, mensajeTecnico);
 		} finally {
 			daoFactory.cerrarConexion();

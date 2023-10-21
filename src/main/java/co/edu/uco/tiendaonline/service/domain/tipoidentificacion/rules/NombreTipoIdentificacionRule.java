@@ -27,22 +27,22 @@ public final class NombreTipoIdentificacionRule implements Rule<String>{
 	}
 	
 	private final void validarLongitud(final String dato) {
-		if (UtilTexto.longitudMaximaValida(dato, 50)) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000058);
+		if (UtilTexto.longitudMaximaValida(dato, 100)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000062);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 
 	private final void validarObligatoriedad(final String dato) {
 		if (UtilTexto.estaVacio(dato)) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000059);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000063);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 	
 	private final void validarFormato(final String dato) {
-		if (!UtilTexto.contieneSoloLetras(dato)) {
-			var mensajeUsuario = "El código del tipo de identificación solo puede contener letras.";
+		if (!UtilTexto.contieneLetrasDigitosEspacios(dato)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}

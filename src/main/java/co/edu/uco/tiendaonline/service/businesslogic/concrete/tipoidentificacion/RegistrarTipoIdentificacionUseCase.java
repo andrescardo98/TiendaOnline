@@ -18,8 +18,7 @@ import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacion
 public final class RegistrarTipoIdentificacionUseCase implements UseCase<TipoIdentificacionDomain>{
 
 	private DAOFactory factoria;
-	
-	
+
 	
 	public RegistrarTipoIdentificacionUseCase(DAOFactory factoria) {
 		setFactoria(factoria);
