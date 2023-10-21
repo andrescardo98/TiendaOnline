@@ -245,6 +245,20 @@ public class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000055, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
 				"Se ha presentado un problema en el método setFactoría de la clase "
 				+ "RegistrarTipoIdentificacionUseCase, debido a que la factoría con la cual se desea crear está nula"));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000056, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"La longitud del código del tipo de identificación no es válida. La longitud máxima son 50 caracteres."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000057, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El código del tipo de identificación es un dato obligatorio."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000058, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"La longitud del código del tipo de identificación no es válida. La longitud máxima son 50 caracteres."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000059, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"El nombre del tipo de identificación es un dato obligatorio."));
+		
+		
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
