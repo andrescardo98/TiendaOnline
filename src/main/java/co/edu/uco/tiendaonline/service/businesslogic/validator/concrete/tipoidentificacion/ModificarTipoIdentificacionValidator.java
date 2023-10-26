@@ -6,7 +6,6 @@ import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.CodigoTip
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.IdTipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.NombreTipoIdentificacionRule;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.rules.TipoIdentificacionRule;
-import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
 public final class ModificarTipoIdentificacionValidator implements Validator<TipoIdentificacionDomain>{
 

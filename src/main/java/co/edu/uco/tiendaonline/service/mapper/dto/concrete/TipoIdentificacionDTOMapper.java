@@ -33,7 +33,7 @@ private static final DTOMapper<TipoIdentificacionDTO, TipoIdentificacionDomain> 
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000070);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
-		return TipoIdentificacionDTO.crear(domain.getId(), domain.getCodigo(), domain.getNombre(), domain.isEstado());
+		return TipoIdentificacionDTO.crear();
 	}
 
 	public static final TipoIdentificacionDomain convertToDomain(final TipoIdentificacionDTO dto) {

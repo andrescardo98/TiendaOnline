@@ -4,7 +4,6 @@ import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnli
 import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 import co.edu.uco.tiendaonline.service.domain.Rule;
 import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
 

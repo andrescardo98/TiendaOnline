@@ -27,7 +27,7 @@ public final class TipoIdentificacionDTO {
 		setEstado(estado);
 	}
 	
-	public static final TipoIdentificacionDTO crear(final UUID id, final String codigo, final String nombre, final boolean estado){
+	public static final TipoIdentificacionDTO crear(){
 		return new TipoIdentificacionDTO();
 	}
 	
@@ -47,7 +47,7 @@ public final class TipoIdentificacionDTO {
 	
 	
 	public final TipoIdentificacionDTO setId(final UUID id) {
-		this.id = UtilObjeto.obtenerValorDefecto(id, null);
+		this.id = UtilObjeto.obtenerValorDefecto(id, UtilUUID.UUID_DEFECTO);
 		return this;
 	}
 	public final TipoIdentificacionDTO setCodigo(final String codigo) {
