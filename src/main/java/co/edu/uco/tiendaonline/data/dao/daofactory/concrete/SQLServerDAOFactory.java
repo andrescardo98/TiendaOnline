@@ -1,8 +1,10 @@
 package co.edu.uco.tiendaonline.data.dao.daofactory.concrete;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
@@ -24,12 +26,21 @@ public final class SQLServerDAOFactory extends DAOFactory{
 	
 	@Override
 	public final void abrirConexion() {
-
-		final String url = "jdbc:sqlserver://localhost:1433;databaseName=databaseDOO";
-		final String usuario = "usersql";
-		final String contrasenia = "+javasql2023";
 		
 		try {
+			Properties prop = new Properties();
+			InputStream input = getClass().getResourceAsStream("/application.properties");
+			prop.load(input);
+			String url = prop.getProperty("db.url");
+			String usuario = prop.getProperty("db.usuario");
+			String contrasenia = prop.getProperty("db.contrasenia");
+            
+            if (url == null || url.isEmpty() || usuario == null || usuario.isEmpty() || contrasenia == null || contrasenia.isEmpty()) {
+            	var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+            	var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000073);
+    			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+            }
+			
 			conexion = DriverManager.getConnection(url, usuario, contrasenia);
 		} catch (final SQLException excepcion) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);

@@ -296,6 +296,16 @@ public class CatalogoMensajes {
 				+ "posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación "
 				+ "domain nula"));
 		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000071, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de leer el archivo de configuración."));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000072, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema de tipo IOException en la clase Configuración tratando de leer el archivo "
+				+ "de configuración. Por favor revise la traza para validar qué ocurrió..." ));
+		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000073, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"No se pudieron obtener credenciales de la base de datos"));
+		
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
