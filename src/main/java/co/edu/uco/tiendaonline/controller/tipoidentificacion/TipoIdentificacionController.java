@@ -2,78 +2,40 @@ package co.edu.uco.tiendaonline.controller.tipoidentificacion;
 
 import java.util.UUID;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uco.tiendaonline.controller.support.response.Respuesta;
-import co.edu.uco.tiendaonline.crosscutting.exception.TiendaOnlineException;
 import co.edu.uco.tiendaonline.service.dto.TipoIdentificacionDTO;
-import co.edu.uco.tiendaonline.service.facade.concrete.tipoidentificacion.ResgistrarTipoIdentificacionFacade;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@RestController
-@RequestMapping("/api/v1/tipoidentificacion")
-public final class TipoIdentificacionController {
-
-	@GetMapping("/dummy")
-	public final TipoIdentificacionDTO obtenerDummy() {
-		return TipoIdentificacionDTO.crear();
-	}
+@Tag(name = "NombreAPI", description = "DescripciónAPI")
+public interface TipoIdentificacionController {
 	
-	@GetMapping("/{id}")
-	public final UUID consultarPorId(@PathVariable("id") UUID id) {
-		return id;
-	}
+	@Operation(summary = "obtenerDummy", description = "Servicio encargado de obtener la estructura JSON básico de un TipoIdentificacion")
+	TipoIdentificacionDTO obtenerDummy();
 	
-	@GetMapping
-	public final TipoIdentificacionDTO consultar(@RequestBody TipoIdentificacionDTO dto) {
-		return dto;
-	}
+	@Operation(summary = "consultarPorId", description = "Servicio encargado de obtener la información del TipoIdentificacion asociado al id enviado como filtro de consulta")
+	ResponseEntity<Respuesta<TipoIdentificacionDTO>> consultarPorId(@PathVariable("id") UUID id);
 	
-	@PostMapping
-	public final ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody TipoIdentificacionDTO dto) {
-		
-		Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
-		HttpStatusCode codigoHttp = HttpStatus.BAD_REQUEST;
-		
-		try {
-			ResgistrarTipoIdentificacionFacade facade = new ResgistrarTipoIdentificacionFacade();
-			facade.execute(dto);
-			codigoHttp = HttpStatus.OK;
-			respuesta.getMensajes().add("El tipo de identificación fue registrado exitosamente");
-		} catch (final TiendaOnlineException excepcion) {
-			respuesta.getMensajes().add(excepcion.getMensajeUsuario());
-			System.err.println(excepcion.getMensajeTecnico());
-			System.err.println(excepcion.getLugar());
-			excepcion.getExcepcionRaiz().printStackTrace();
-			// TODO: Hacer logging de la excepción presentada
-			
-		} catch (final Exception excepcion) {
-			respuesta.getMensajes().add("Se ha presentado un problema inesperado tratando de registrar el tipo "
-					+ "de identificación.");
-			excepcion.printStackTrace();
-			// TODO: Hacer logging de la excepción presentada
-		}
-		return new ResponseEntity<>(respuesta, codigoHttp);
-	}
+	@Operation(summary = "consultar", description = "Servicio encargado de obtener la información de un TipoIdentificacion")
+	ResponseEntity<Respuesta<TipoIdentificacionDTO>> consultar(@RequestBody TipoIdentificacionDTO dto);
 	
-	@PutMapping
-	public final TipoIdentificacionDTO modificar(@PathVariable("id") UUID id, @RequestBody TipoIdentificacionDTO dto) {
-		dto.setId(id);
-		return dto;
-	}
+	@Operation(summary = "registrar", description = "Servicio encargado de registrar la información del nuevo tipo de identificación enviado como parámetro")
 	
-	@DeleteMapping("/{id}")
-	public final UUID eliminar(@PathVariable("id") UUID id) {
-		return id;
-	}
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Tipo de identifiacion registrado exitosamente"), 
+		@ApiResponse(responseCode = "400", description = "Tipo de identifiacion no registrado exitosamente por algun problema desconocido"),
+		 @ApiResponse(responseCode = "500", description = "Tipo de identifiacion no registrado exitosamente por un problema inesperado")})
+	ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody TipoIdentificacionDTO dto);
 	
+	@Operation(summary = "modificar", description = "Servicio encargado de modificar la información del tipo de identificación correspondiente al id enviado como parámetro")
+	ResponseEntity<Respuesta<TipoIdentificacionDTO>> modificar(@PathVariable("id") UUID id, 
+			@RequestBody TipoIdentificacionDTO dto);
+	
+	@Operation(summary = "eliminar", description = "Servicio encargado de eliminar de forma definitiva la información del tipo de identificación enviado como parámetro")
+	ResponseEntity<Respuesta<TipoIdentificacionDTO>> eliminar(@PathVariable("id") UUID id);
 }
